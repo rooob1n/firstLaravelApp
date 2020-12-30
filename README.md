@@ -1,2 +1,2 @@
 # firstLaravelApp
-first laravel app
+Sample laravel CRUD
