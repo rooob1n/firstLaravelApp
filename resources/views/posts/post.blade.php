@@ -1,7 +1,7 @@
 <h1>
     <a href="/Posts/{{$post->id}}">{{ $post->title}} </a>
 
-    @if (session('id') == $post->user_id)
+    @if (Auth::check() && session('id') == $post->user_id)
         <a class="btn btn-sm btn-success" href="/Posts/{{$post->id}}/Update" style="margin-left:28%;">Update</a>
         <a class="btn btn-sm btn-danger" href="/Posts/{{$post->id}}/Delete">Delete</a>
     @endif
