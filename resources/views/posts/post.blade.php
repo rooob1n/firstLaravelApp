@@ -10,6 +10,6 @@
 <p class="lead">
     {{ $post->body }} <br>
 
-    {{ $post->user->name }} :
+    {{-- {{ $post->user->name }} --}} :
     created at : {{ $post->created_at->toDayDateTimeString()}}
 </p>
