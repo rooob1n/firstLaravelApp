@@ -28,6 +28,7 @@ class registerEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        $data = $this->user;
+        return $this->view('emails.welcome',compact('data'));
     }
 }

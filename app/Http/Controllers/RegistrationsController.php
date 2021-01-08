@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\registerEmail;
+use Carbon\Carbon;
 
 class RegistrationsController extends Controller
 {
@@ -25,10 +28,12 @@ class RegistrationsController extends Controller
             'password'=>request('txtPassword')
         ]);
 
-       auth()->login($user);
+        Mail::to($user)->send(new registerEmail($user));
 
-       session()->flash('message','Thank you for signing in!');
+       /* auth()->login($user);
 
-       return redirect()->home();
+       session()->flash('message','Thank you for signing in!'); */
+
+       return redirect()->home()->with(session()->flash('message', 'Your account has been created. Please check email for verification link.'));
     }
 }
