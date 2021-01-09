@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\registerEmail;
+use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
 class RegistrationsController extends Controller
@@ -17,16 +18,17 @@ class RegistrationsController extends Controller
     public function store(Request $request)
     {
         $this->validate(request(),[
-            'txtUsername'=>'required',
-            'txtPassword'=>'required|confirmed',
-            'txtEmail'=>'required|email'
+            'Username'=>'required|string',
+            'Password'=>'required|confirmed|min:4|string',
+            'Email'=>'required|email|unique:users|string'
         ]);
 
         $user = User::create([
-            'name'=>request('txtUsername'),
-            'email'=>request('txtEmail'),
-            'password'=>request('txtPassword')
+            'name'=>request('Username'),
+            'email'=>request('Email'),
+            'password'=>Hash::make(request('Password'))
         ]);
+
 
         Mail::to($user)->send(new registerEmail($user));
 
@@ -34,6 +36,6 @@ class RegistrationsController extends Controller
 
        session()->flash('message','Thank you for signing in!'); */
 
-       return redirect()->home()->with(session()->flash('message', 'Your account has been created. Please check email for verification link.'));
+       return redirect()->route('login')->with(session()->flash('message', 'Your account has been created. Please check email for verification link.'));
     }
 }

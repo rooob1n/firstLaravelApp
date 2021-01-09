@@ -8,23 +8,23 @@
     <form method="POST" action="/Register">
         {{csrf_field()}}
         <div class="col-md-12">
-            <label for="txtUsername" class="form-label">Username</label>
-            <input type="text" class="form-control" id="txtUsername" name="txtUsername">
+            <label for="Username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="Username" name="Username">
         </div>
 
         <div class="col-md-12">
-            <label for="txtEmail" class="form-label">Email</label>
-            <textarea class="form-control" id="txtEmail" name="txtEmail"></textarea>
+            <label for="Email" class="form-label">Email</label>
+            <textarea class="form-control" id="Email" name="Email"></textarea>
         </div>
 
         <div class="col-md-12">
-            <label for="txtPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="txtPassword" name="txtPassword">
+            <label for="Password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="Password" name="Password">
         </div>
 
         <div class="col-md-12">
-            <label for="txtPassword_confirmation" class="form-label">Confirm Password</label>
-            <input type="password" class="form-control" id="txtPassword_confirmation" name="txtPassword_confirmation">
+            <label for="Password_confirmation" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="Password_confirmation" name="Password_confirmation">
         </div>
 
         <br>

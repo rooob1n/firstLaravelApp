@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class SessionsController extends Controller
@@ -18,15 +19,25 @@ class SessionsController extends Controller
 
     public function store(Request $request){
         
-       $user = User::where('email', $request->txtEmail)->where('password', $request->txtPassword)->first();
+       $user = User::where('email', $request->Email)->first();
 
-      
-
-       if($user) {
-            auth()->login($user);
-       }else {
+       if($user){
+            if(!Hash::check($request->Password, $user->password)) {
+                return back()->withErrors([
+                    'message'=>'Incorrect Password.'
+                ]);
+            }
+            else if(!$user->hasVerifiedEmail()){
+                    return back()->withErrors([
+                        'message'=>'Please verify your account.'
+                    ]);
+            }
+            else{
+                    auth()->login($user);
+            }
+       }else{
             return back()->withErrors([
-                'message'=>'Please check your credentials.'
+                'message'=>'Account not found!'
             ]);
        }
 
@@ -35,9 +46,9 @@ class SessionsController extends Controller
            'name'=>$user->name,
        ]);
 
-       session()->flash('message','Welcome!');
-
-       return redirect()->home();
+       return redirect()
+                ->home()
+                ->with(session()->flash('message','Welcome!'));
     }
     
 

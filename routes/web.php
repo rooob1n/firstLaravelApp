@@ -23,13 +23,15 @@ Route::post('/Posts/{post}/comments', 'App\Http\Controllers\CommentsController@s
 
 Route::get('/Posts/Tags/{tag}', 'App\Http\Controllers\TagsController@index');
 
-Route::get('/Register', 'App\Http\Controllers\RegistrationsController@create')->name('login');
+Route::get('/Register', 'App\Http\Controllers\RegistrationsController@create')->name('register');
 
 Route::post('/Register', 'App\Http\Controllers\RegistrationsController@store');
 
-Route::get('/Login', 'App\Http\Controllers\SessionsController@create');
+Route::get('/Login', 'App\Http\Controllers\SessionsController@create')->name('login');
 
 Route::post('/Login', 'App\Http\Controllers\SessionsController@store');
 
 Route::get('/Logout', 'App\Http\Controllers\SessionsController@destroy');
+
+Route::get('/verify/{id}', 'App\Http\Controllers\emailVerificationController@verify');
 

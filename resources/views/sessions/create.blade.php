@@ -9,13 +9,13 @@
 
         {{csrf_field()}}
         <div class="col-md-12">
-            <label for="txtEmail" class="form-label">Email</label>
-            <input type="text" class="form-control" id="txtEmail" name="txtEmail">
+            <label for="Email" class="form-label">Email</label>
+            <input type="text" class="form-control" id="Email" name="Email">
         </div>
 
         <div class="col-md-12">
-            <label for="txtPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="txtPassword" name="txtPassword">
+            <label for="Password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="Password" name="Password">
         </div>
 
         <br>
